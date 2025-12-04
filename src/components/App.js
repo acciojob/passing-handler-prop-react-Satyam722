@@ -3,9 +3,9 @@ import ColourSelector from "./ColourSelector";
 import Selection from "./Selection";
 
 export default function App() {
-  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedColor, setSelectedColor] = useState(""); // global selected color
 
-  const config = [
+  const colors = [
     { label: "Blue", value: "blue" },
     { label: "Orange", value: "orange" },
     { label: "Green", value: "green" }
@@ -13,20 +13,19 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Must use Props and State. Help us to change the color!</h1>
+      <h2>Select the gradient and then the Box to change the color</h2>
 
       <div className="button-cont">
-        {config.map((colObj) => (
+        {colors.map((c) => (
           <ColourSelector
-            key={colObj.value}
-            config={colObj}
+            key={c.value}
+            config={c}
             handleClick={setSelectedColor}
           />
         ))}
       </div>
 
       <div className="selection-cont">
-        {/* Three Selection Boxes */}
         <Selection selectedColor={selectedColor} />
         <Selection selectedColor={selectedColor} />
         <Selection selectedColor={selectedColor} />
