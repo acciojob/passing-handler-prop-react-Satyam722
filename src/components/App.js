@@ -1,26 +1,54 @@
 import React, { useState } from 'react';
-import Selection from './Selection';
 import ColourSelector from './ColourSelector';
+import Selection from './Selection';
+
+const colourConfig = [
+  {
+    key: 'blue',
+    label: 'Blue',
+    classname: 'btn-blue',
+    background: 'rgb(34, 193, 195)'
+  },
+  {
+    key: 'orange', 
+    label: 'Orange',
+    classname: 'btn-orange',
+    background: 'rgb(221, 112, 18)'
+  },
+  {
+    key: 'green',
+    label: 'Green', 
+    classname: 'btn-green',
+    background: 'rgb(44, 209, 88)'
+  }
+];
 
 function App() {
-  const [selectedColor, setSelectedColor] = useState('white');
+  const [nextBackground, setNextBackground] = useState({background: ''});
 
-  const handleColorChange = (color) => {
-    setSelectedColor(color);
+  const selectNextBackground = (nextBackground) => {
+    setNextBackground(nextBackground);
   };
 
   return (
-    <div>
-      <div className="fix-box" style={{ background: selectedColor }}>
-        Box 1
+    <div id="master">
+      <h5 className="heading">Color Picker</h5>
+      
+      <div className="row">
+        {colourConfig.map((config, index) => (
+          <ColourSelector 
+            key={config.key} 
+            config={config} 
+            selectNextBackground={selectNextBackground} 
+          />
+        ))}
       </div>
-      <div className="fix-box" style={{ background: selectedColor }}>
-        Box 2
+
+      <div className="row" id="children-wrapper">
+        <Selection selection={nextBackground} />
+        <Selection selection={nextBackground} />
+        <Selection selection={nextBackground} />
       </div>
-      <div className="fix-box" style={{ background: selectedColor }}>
-        Box 3
-      </div>
-      <Selection applyColor={handleColorChange} />
     </div>
   );
 }
