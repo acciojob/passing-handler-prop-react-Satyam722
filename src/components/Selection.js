@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Selection({ applyColor }) {
-  const colors = ['red', 'green', 'blue'];
+const Selection = (props) => {
+  const [selectionStyle, setSelectionStyle] = useState({});
+
+  // Update background when props change
+  React.useEffect(() => {
+    if (props.selection && props.selection.background) {
+      setSelectionStyle({ background: props.selection.background });
+    }
+  }, [props.selection]);
 
   return (
-    <div>
-      {colors.map((color) => (
-        <button
-          key={color}
-          onClick={() => applyColor(color)}
-          style={{ background: color, margin: '5px' }}
-        >
-          {color}
-        </button>
-      ))}
+    <div 
+      className="fix-box"
+      style={selectionStyle}
+    >
+      {/* Selection Box Content */}
     </div>
   );
-}
+};
 
 export default Selection;
