@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Selection = (props) => {
-  const [selectionStyle, setSelectionStyle] = useState({});
+const Selection = ({ selection }) => {
+  const [background, setBackground] = useState('');
 
-  // Update background when props change
-  React.useEffect(() => {
-    if (props.selection && props.selection.background) {
-      setSelectionStyle({ background: props.selection.background });
+  useEffect(() => {
+    if (selection && selection.background) {
+      setBackground(selection.background);
     }
-  }, [props.selection]);
+  }, [selection]);
 
   return (
     <div 
       className="fix-box"
-      style={selectionStyle}
-    >
-      {/* Selection Box Content */}
-    </div>
+      style={{ backgroundColor: background }}
+    ></div>
   );
 };
 
