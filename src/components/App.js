@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Selection from './Selection';
+import ColourSelector from './ColourSelector';
 
 function App() {
   const [selectedColor, setSelectedColor] = useState('white');
