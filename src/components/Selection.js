@@ -1,30 +1,11 @@
-import React, { useState } from "react";
-import '../styles/Selection.css'; // optional, for individual styling
+import React from 'react';
 
-const Selection = ({ applyColor }) => {
-  const [style, setStyle] = useState({ background: "" });
-
-  // This function will be called by the parent App.js
-  const handleClick = () => {
-    applyColor(setStyle);
-  };
-
+const Selection = ({ background }) => {
   return (
     <div
-      className="selection-box"
-      style={{
-        ...style,
-        width: "150px",
-        height: "150px",
-        margin: "10px",
-        display: "inline-block",
-        cursor: "pointer",
-        borderRadius: "8px",
-        transition: "background 0.3s ease"
-      }}
-      onClick={handleClick}
+      className="fix-box"
+      style={background}
     >
-      {/* You can show a label or leave it empty */}
     </div>
   );
 };
