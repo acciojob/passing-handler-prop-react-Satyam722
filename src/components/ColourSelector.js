@@ -1,17 +1,16 @@
-import React from 'react';
+import React from "react";
 
-const ColourSelector = ({ config, selectNextBackground }) => {
-  const { classname, label, background, key } = config;
+const ColourSelector = (props) => {
+  const { config, selectNextBackground } = props;
+  const { background, classname, label, key } = config;
+
+  function handleClick() {
+    selectNextBackground({ background: background });
+  }
 
   return (
-    <button
-      className={classname}
-      data-testid={key}       
-      onClick={() => selectNextBackground({ background })}
-    >
-      {label}
-    </button>
-  );
+    <button className={classname} onClick={handleClick} data-testid={key}>{label}</button>
+  ); // prettier-ignore
 };
 
 export default ColourSelector;
